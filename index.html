@@ -24,21 +24,21 @@
 <body class="flex-wrap">
 
     <!-- start 01 -->
-    <div class="plate">
+    <div class="plate" data-card="1">
         <div class="cover-content-wrapper">
             <div class="cover-content">
                 <img class="title-img" src="img/pictures/html.png" alt="HTML">
                 <div class="title">Определи свой уровень знания верстки сайтов</div>
                 <p>Ответь на серию вопросов, получи оценку знаний, список уроков чтобы подтянуть свой уровень и
                     методичку с нашего курса “Профессия: Верстальщик сайтов.”</p>
-                <a href="#" class="button">Пройти тест</a>
+                <a href="#" class="button" data-nav="next">Пройти тест</a>
             </div>
         </div>
     </div>
     <!-- // start 01 -->
 
     <!-- plate 02 -->
-    <div class="plate">
+    <div class="plate hidden" data-card="2">
 
         <!-- plate-header -->
         <div class="plate-header">
@@ -99,8 +99,8 @@
 
             </div>
             <div class="plate-footer__buttons">
-                <a href="#" class="button button--back">Назад</a>
-                <a href="#" class="button">Далее</a>
+                <a href="#" class="button button--back" data-nav="prev">Назад</a>
+                <a href="#" class="button" data-nav="next">Далее</a>
             </div>
         </div>
         <!-- // plate-footer -->
@@ -109,7 +109,7 @@
     <!-- //plate 02 -->
 
     <!-- plate 03 -->
-    <div class="plate">
+    <div class="plate hidden" data-card="3">
 
         <!-- plate-header -->
         <div class="plate-header">
@@ -170,8 +170,8 @@
 
             </div>
             <div class="plate-footer__buttons">
-                <a href="#" class="button button--back">Назад</a>
-                <a href="#" class="button">Далее</a>
+                <a href="#" class="button button--back" data-nav="prev">Назад</a>
+                <a href="#" class="button" data-nav="next">Далее</a>
             </div>
         </div>
         <!-- // plate-footer -->
@@ -180,7 +180,7 @@
     <!-- //plate 03 -->
 
     <!-- plate 04 -->
-    <div class="plate">
+    <div class="plate hidden" data-card="4">
 
         <!-- plate-header -->
         <div class="plate-header">
@@ -275,8 +275,8 @@
 
             </div>
             <div class="plate-footer__buttons">
-                <a href="#" class="button button--back">Назад</a>
-                <a href="#" class="button">Далее</a>
+                <a href="#" class="button button--back" data-nav="prev">Назад</a>
+                <a href="#" class="button" data-nav="next">Далее</a>
             </div>
         </div>
         <!-- // plate-footer -->
@@ -285,7 +285,7 @@
     <!-- //plate 04 -->
 
     <!-- plate 05 -->
-    <div class="plate">
+    <div class="plate hidden" data-card="5">
         <div class="cover-content-wrapper">
             <div class="cover-content">
 
@@ -297,7 +297,7 @@
                     <input class="input-email" type="email" id="email" placeholder="Ваш Email">
                 </div>
 
-                <input class="button button--huge" type="submit" value="Получить результаты">
+                <input class="button button--huge" type="submit" value="Получить результаты" data-nav="next">
 
                 <label class="checkbox">
                     <input type="checkbox" class="checkbox__real">
@@ -311,7 +311,7 @@
     <!-- // plate 05 -->
 
     <!-- plate 06 -->
-    <div class="plate">
+    <div class="plate hidden" data-card="6">
         <div class="cover-content-wrapper">
             <div class="cover-content">
 
@@ -335,7 +335,6 @@
     </div>
     <!-- // plate 06 -->
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 
