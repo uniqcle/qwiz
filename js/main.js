@@ -6,12 +6,8 @@ buttonsNext.forEach(function (next) {
     next.addEventListener('click', function (e) {
 
         const thisCard = this.closest('[data-card]')
-        let thisCardNumber = parseInt(thisCard.dataset.card);
-        let nextCardNumber = thisCardNumber + 1;
-        let nextCard = document.querySelector(`[data-card="${nextCardNumber}"]`)
 
-        thisCard.classList.add('hidden')
-        nextCard.classList.remove('hidden')
+        navigate("next", thisCard)
 
     })
 });
@@ -21,13 +17,23 @@ buttonsNext.forEach(function (next) {
 buttonsPrev.forEach(function (prev) {
     prev.addEventListener('click', function (e) {
         const thisCard = this.closest('[data-card]')
-        let thisCardNumber = parseInt(thisCard.dataset.card);
 
-        let prevCardNumber = thisCardNumber - 1;
-        let prevCard = document.querySelector(`[data-card="${prevCardNumber}"]`)
-
-        thisCard.classList.add('hidden')
-        prevCard.classList.remove('hidden')
+        navigate("prev", thisCard)
 
     })
 })
+
+
+
+
+function navigate(direction, thisCard) {
+
+    let thisCardNumber = parseInt(thisCard.dataset.card);
+
+    let cardNumber = (direction === "next") ? thisCardNumber + 1 : thisCardNumber - 1;
+
+    let card = document.querySelector(`[data-card="${cardNumber}"]`)
+
+    thisCard.classList.add('hidden')
+    card.classList.remove('hidden')
+}
