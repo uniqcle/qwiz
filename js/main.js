@@ -19,6 +19,11 @@ buttonsNext.forEach(function (next) {
             navigate("next", thisCard)
         } else {
             console.log('validate')
+
+            const numberCard = parseInt(thisCard.dataset.card)
+
+            saveAnswers(numberCard, getCardData(numberCard))
+
             navigate("next", thisCard)
 
         }
@@ -121,4 +126,8 @@ function getCardData(numberCard) {
     }
 
     return data;
+}
+
+function saveAnswers(number, data) {
+    answers[number] = data;
 }
