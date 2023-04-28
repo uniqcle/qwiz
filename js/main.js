@@ -71,13 +71,11 @@ function getCardData(numberCard) {
     var currentCard = document.querySelector(`[data-card="${numberCard}"]`)
 
     question = currentCard.querySelector('[data-question]').innerText;
+
+    /* radios */
     let radioInputs = currentCard.querySelectorAll('[type="radio"]')
 
     radioInputs.forEach(function (radio) {
-        // console.dir(radio)
-        // console.log(radio.name);
-        // console.log(radio.value)
-        // console.log(radio.checked)
 
         if (radio.checked) {
             result.push({
@@ -88,6 +86,34 @@ function getCardData(numberCard) {
 
     })
 
+    /* checkboxes */
+    let checkboxesInput = currentCard.querySelectorAll('[type="checkbox"]')
+
+    checkboxesInput.forEach(function (checkbox) {
+
+        if (checkbox.checked) {
+            result.push({
+                name: checkbox.name,
+                value: checkbox.value
+            })
+        }
+    })
+
+
+
+    /* inputs */
+    let inputsInput = currentCard.querySelectorAll('[type="text"], [type="email"], [type="number"]');
+
+    inputsInput.forEach(function (input) {
+
+        if (input.value.trim() !== '') {
+            result.push({
+                name: input.name,
+                value: input.value
+            })
+        }
+    })
+
     // console.log(result)
     let data = {
         question: question,
@@ -95,6 +121,4 @@ function getCardData(numberCard) {
     }
 
     return data;
-
-
 }
