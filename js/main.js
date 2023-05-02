@@ -24,7 +24,7 @@ buttonsNext.forEach(function (next) {
 
             saveAnswers(numberCard, getCardData(numberCard))
 
-            if (isFilled(numberCard)) {
+            if (isFilled(numberCard) && checkOnRequired(numberCard)) {
                 navigate("next", thisCard)
             } else {
                 alert('Необходимо ответить на вопрос!')
@@ -136,14 +136,62 @@ function saveAnswers(number, data) {
     answers[number] = data;
 }
 
-
 // ф-ия провери на заполненность
 function isFilled(numberCard) {
-    console.log(answers[numberCard].answer.length);
-
-    if (answers[numberCard].answer.length > 0) {
-        return true
-    } else {
-        return false;
-    }
+    if (answers[numberCard].answer.length > 0) return true
+    return false;
 }
+
+//ф-ия проверки за корректную заполненность required input emails
+function checkOnRequired(numberCard) {
+    const currentCard = document.querySelector(`[data-card="${numberCard}"]`)
+    const requiredFields = currentCard.querySelectorAll('[required]')
+    const isValidArray = [];
+
+    requiredFields.forEach(function (field) {
+        //console.dir(field)
+
+        if (field.type === "checkbox" && field.checked === false) {
+            isValidArray.push(false)
+        }
+
+        if (field.type === 'email' && !validateEmail(field.value)) {
+            isValidArray.push(false)
+        }
+
+    })
+
+    if (isValidArray.indexOf(false) === -1) return true;
+    return false
+
+}
+
+
+// Ф-я для проверки email
+function validateEmail(email) {
+    var pattern = /^[\w-\.]+@[\w-]+\.[a-z]{2,4}$/i;
+    return pattern.test(email);
+}
+
+// Установка активности
+
+document.querySelectorAll('.radio-group').forEach(function (group) {
+
+    //console.log(group)
+
+    group.addEventListener('click', function (e) {
+
+        let currentLabel = e.target.closest('label');
+        //console.log(e.target);
+        console.log(currentLabel);
+
+
+        if (currentLabel) {
+            currentLabel.closest('.radio-group').querySelectorAll('label').forEach(function (item) {
+                item.classList.remove('radio-block--active')
+            })
+        }
+        currentLabel.classList.add('radio-block--active')
+    })
+
+})
