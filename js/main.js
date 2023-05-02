@@ -13,19 +13,23 @@ buttonsNext.forEach(function (next) {
     next.addEventListener('click', function (e) {
 
         const thisCard = this.closest('[data-card]')
+        let numberCard = parseInt(thisCard.dataset.card)
 
         if (thisCard.dataset.validate == 'novalidate') {
-            console.log('no validate')
-            navigate("next", thisCard)
-        } else {
-            console.log('validate')
 
-            const numberCard = parseInt(thisCard.dataset.card)
+            navigate("next", thisCard)
+            updateProgressBar("next", numberCard)
+
+        } else {
+
+            let numberCard = parseInt(thisCard.dataset.card)
 
             saveAnswers(numberCard, getCardData(numberCard))
 
             if (isFilled(numberCard) && checkOnRequired(numberCard)) {
                 navigate("next", thisCard)
+                updateProgressBar("next", numberCard)
+
             } else {
                 alert('Необходимо ответить на вопрос!')
             }
@@ -42,8 +46,11 @@ buttonsNext.forEach(function (next) {
 buttonsPrev.forEach(function (prev) {
     prev.addEventListener('click', function (e) {
         const thisCard = this.closest('[data-card]')
+        let numberCard = parseInt(thisCard.dataset.card)
 
         navigate("prev", thisCard)
+        updateProgressBar("prev", numberCard)
+
 
     })
 })
@@ -123,7 +130,6 @@ function getCardData(numberCard) {
         }
     })
 
-    console.log(result)
     let data = {
         question: question,
         answer: result
@@ -189,12 +195,11 @@ document.querySelectorAll('.radio-group').forEach(function (group) {
     })
 })
 
-
+// Установка активности checkboxes
 document.querySelectorAll('.checkbox-block').forEach(function (currentCheckboxLable) {
     let checkbox = currentCheckboxLable.querySelector('[type="checkbox"]');
 
     checkbox.addEventListener('change', function (e) {
-        console.log(checkbox)
 
         if (checkbox.checked) {
             currentCheckboxLable.classList.add('checkbox-block--active');
@@ -205,4 +210,34 @@ document.querySelectorAll('.checkbox-block').forEach(function (currentCheckboxLa
 
 
 })
+
+
+// прогресс бар
+function updateProgressBar(direction, numberCard) {
+    // Расчет кол-ва карточек
+    let cardsTotalNumber = document.querySelectorAll('[data-card]').length;
+
+    // Текущая карточка
+    if (direction === 'next') {
+        numberCard += 1;
+    }
+    if (direction === 'prev') {
+        numberCard -= 1;
+    }
+
+    // Расчет % прохождения
+    let progressPercent = (numberCard * 100) / cardsTotalNumber;
+    progressPercent = progressPercent.toFixed();
+
+    // Обновляем прогресс бар
+    let progress = document.querySelector(`[data-card="${numberCard}"]`).querySelector('.progress');
+
+    if (progress) {
+        progress.querySelector('.progress__label strong').innerText = `${progressPercent}%`;
+        progress.querySelector('.progress__line-bar').style.width = `${progressPercent}%`;
+    }
+
+}
+
+
 
