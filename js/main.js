@@ -24,7 +24,11 @@ buttonsNext.forEach(function (next) {
 
             saveAnswers(numberCard, getCardData(numberCard))
 
-            navigate("next", thisCard)
+            if (isFilled(numberCard)) {
+                navigate("next", thisCard)
+            } else {
+                alert('Необходимо ответить на вопрос!')
+            }
 
         }
 
@@ -119,7 +123,7 @@ function getCardData(numberCard) {
         }
     })
 
-    // console.log(result)
+    console.log(result)
     let data = {
         question: question,
         answer: result
@@ -130,4 +134,16 @@ function getCardData(numberCard) {
 
 function saveAnswers(number, data) {
     answers[number] = data;
+}
+
+
+// ф-ия провери на заполненность
+function isFilled(numberCard) {
+    console.log(answers[numberCard].answer.length);
+
+    if (answers[numberCard].answer.length > 0) {
+        return true
+    } else {
+        return false;
+    }
 }
