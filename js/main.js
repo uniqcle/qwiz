@@ -173,18 +173,12 @@ function validateEmail(email) {
     return pattern.test(email);
 }
 
-// Установка активности
-
+// Установка активности radios
 document.querySelectorAll('.radio-group').forEach(function (group) {
-
-    //console.log(group)
 
     group.addEventListener('click', function (e) {
 
         let currentLabel = e.target.closest('label');
-        //console.log(e.target);
-        console.log(currentLabel);
-
 
         if (currentLabel) {
             currentLabel.closest('.radio-group').querySelectorAll('label').forEach(function (item) {
@@ -193,5 +187,22 @@ document.querySelectorAll('.radio-group').forEach(function (group) {
         }
         currentLabel.classList.add('radio-block--active')
     })
+})
+
+
+document.querySelectorAll('.checkbox-block').forEach(function (currentCheckboxLable) {
+    let checkbox = currentCheckboxLable.querySelector('[type="checkbox"]');
+
+    checkbox.addEventListener('change', function (e) {
+        console.log(checkbox)
+
+        if (checkbox.checked) {
+            currentCheckboxLable.classList.add('checkbox-block--active');
+        } else {
+            currentCheckboxLable.classList.remove('checkbox-block--active');
+        }
+    })
+
 
 })
+
